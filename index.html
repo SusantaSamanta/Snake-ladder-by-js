@@ -1,0 +1,183 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tic Tac Game</title>
+  <style>
+      * {
+      border: 0px;
+      margin: 0px;
+      box-sizing: border-box;
+      font-size: 4vw;
+      font-weight: 400;
+    }
+    #gameBody{
+      height: 100vh;
+      width: 100vw;
+      background: ;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #gameContainer{
+      height: 98vw;
+      width: 98vw;
+      background: #e8e8e8;
+      display: grid;
+      grid-template-columns: repeat(1,1fr);
+      grid-template-rows: repeat(10,1fr);
+      border: 1px solid black;
+    }
+    .allRow{
+      display: grid;
+      grid-template-columns: repeat(10,1fr);
+      grid-template-rows: repeat(1,1fr);
+    }
+    .allCell{
+      border: 1px solid black;
+    }
+    #cell1{
+      color: red;
+    }
+    
+    
+    
+  </style>
+</head>
+<body>
+  
+  <div id="gameBody">
+    <div id="gameContainer">
+    </div>
+  </div>
+  
+  <script>
+
+    const gameContainer = document.getElementById("gameContainer"); // Get the gameContainer element
+
+    let cellCount = 1;
+    for (let i = 1; i <= 10; i++) {
+      const row = document.createElement("div");
+      row.classList.add("allRow");
+      row.id = `row${i}`;
+      gameContainer.insertBefore(row, gameContainer.firstChild);
+     // gameContainer.appendChild(row);
+
+      for (let j = 1; j <= 10; j++) {
+        const cell = document.createElement("div");
+        cell.classList.add("allCell");
+        cell.id = `cell${cellCount}`;
+        cell.textContent = cellCount; // Set textContent correctly
+        if( i % 2 == 0 )
+          row.insertBefore(cell, row.firstChild);
+        else
+          row.appendChild(cell); // Append cell to row
+        cellCount++;
+      }
+    }
+    
+    let bgArr = ['pink','white','yellow','white','pink','white','yellow','white','pink','white','yellow','white','pink']
+    //cell2.style.color = bgArr[2]
+    
+    i  = 1
+    const bgLoop = () => {
+      console.log(i)
+      i++
+      setTimeout(bgLoop, 500)
+    }
+    
+    bgLoop()
+    
+    
+    
+    
+    
+  </script>
+</body>
+</html>
+<!-- 
+
+
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tic Tac Game</title>
+  <style>
+      * {
+      border: 0px;
+      margin: 0px;
+      box-sizing: border-box;
+      font-size: 5vw;
+      font-weight: 400;
+    }
+    #gameBody{
+      background: black;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #gameContainer{
+      height: 98vw;
+      width: 98vw;
+      background: gray;
+      display: grid;
+      grid-template-columns: repeat(1,1fr);
+      grid-template-rows: repeat(10,1fr);
+    }
+    .allRow{
+      display: grid;
+      grid-template-columns: repeat(10,1fr);
+      grid-template-rows: repeat(1,1fr);
+    }
+    
+    
+  </style>
+
+<body>
+  
+  <div id="gameBody">
+    <div id="gameContainer">
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  <script>
+    console.log("start")
+   
+    
+    let cellCount = 1;
+    for(i = 1; i <= 10; i++){
+      const row = document.createElement('div');
+      row.classList.add('allRow');
+      row.id = `row${i}`;
+      gameContainer.appendChild(row);
+      for(j = 1; j <= 10; j++){
+        const cell = document.createElement('div');
+        cell.classList.add('allCell');
+        cell.id = `cell${cellCount}`;
+        `cell${cellCount}`.textContent = cellCount;
+        //row${i}.appendChild(cell);
+        document.getElementById(`row${i}`).appendChild(cell);
+        cellCount++;
+      }
+    }
+    
+    
+  </script>
+</body>
+  
+  
+
+
+
+</html>
+
+
+-->
