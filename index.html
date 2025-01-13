@@ -128,7 +128,20 @@
         if(j == 11)
           j = 3;
       }
-      i
+      if(i <= 60 && i > 50){
+        newCell = document.getElementById(`cell${i}`);
+        newCell.style.backgroundColor = bgArr[j];
+        j++;
+        if(j == 13)
+          j = 3;
+      }
+      if(i <= 70 && i > 60){
+        newCell = document.getElementById(`cell${i}`);
+        newCell.style.backgroundColor = bgArr[j];
+        j++;
+        if(j == 13)
+          j = 3;
+      }
      
       i++
       if(i <= 50)
@@ -140,12 +153,54 @@
   }
   
   
-  
+  const bgloopTwo = () => {
+    let i= 100, j = 2;
+    const bgLoop100_51 = () => {
+      if(i >= 91){
+        newCell = document.getElementById(`cell${i}`);
+        newCell.style.backgroundColor = bgArr[j];
+        j++;
+        if(j == 12)
+          j = 4;
+      }
+      if(i >= 81 && i < 91){
+        newCell = document.getElementById(`cell${i}`);
+        newCell.style.backgroundColor = bgArr[j];
+        j++;
+        if(j == 14)
+          j = 4;
+      }
+      if(i >= 71 && i < 81){
+        newCell = document.getElementById(`cell${i}`);
+        newCell.style.backgroundColor = bgArr[j];
+        j++;
+        if(j == 14)
+          j = 2;
+      }
+      if(i >= 61 && i < 71){
+        newCell = document.getElementById(`cell${i}`);
+        newCell.style.backgroundColor = bgArr[j];
+        j++;
+        if(j == 12)
+          j = 2;
+      }
+      if(i >= 51 && i < 61){
+        newCell = document.getElementById(`cell${i}`);
+        newCell.style.backgroundColor = bgArr[j];
+        j++;
+        if(j == 12)
+          j = 2;
+      }
+      i--
+      if(i >= 51)
+        setTimeout(bgLoop100_51, 20);
+    }
+    bgLoop100_51()
+  }
   bgloopOne()
-  
+  bgloopTwo()  
     
     
   </script>
 </body>
 </html>
-
