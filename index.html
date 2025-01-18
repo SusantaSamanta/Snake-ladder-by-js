@@ -67,7 +67,7 @@
       for (let j = 1; j <= 10; j++) {
         const cell = document.createElement("div");
         cell.classList.add("allCell");
-        cell.id = `cell${cellCount}`;
+        cell.id = `cell${cellCount}`; //cellCount++
         cell.textContent = cellCount; // Set textContent correctly
         if( i % 2 == 0 )
           row.insertBefore(cell, row.firstChild); // for each i 10 cell are created and add at the last of the row (i%2=0)
@@ -90,115 +90,109 @@
     //newCell = document.getElementById(`cell${i}`)
     //newCell.style.color = bgArr[0];
     
-  const bgloopOne = () => {
-    let i= 1, j = 1, ten = 10, cac = 1;
-    const bgLoop1_50 = () => {
+  const bgColorSequence = () => {
+    let i= 1, j = 1, ten = 10;
+    for(i; i<= 100; i++){
       if(i <= 10){
-        newCell = document.getElementById(`cell${i}`);
+      /*  newCell = document.getElementById(`cell${i}`);
         newCell.style.backgroundColor = bgArr[j];
         j++;
         if(j == 11)
-          j = 3;
+          j = 3;*/
+          setColorBybgArr(1,i); // starting color index of bgArr, i from 1 to 10
       }
-      if(i <= 20 && i > 10){
-        newCell = document.getElementById(`cell${i}`);
+      if(i <= 20 && i > 10){  // 11 -> 20
+        /*newCell = document.getElementById(`cell${i}`);
         newCell.style.backgroundColor = bgArr[j];
         j++;
         if(j == 13)
-          j = 3;
+          j = 3;*/
+          setColorBybgArr(3,i); // starting color index of bgArr, i from 11 to 20
       }
-      if(i <= 30 && i > 20){
-        newCell = document.getElementById(`cell${i}`);
+      if(i <= 30 && i > 20){   // 21 -> 30 
+        /*newCell = document.getElementById(`cell${i}`);
         newCell.style.backgroundColor = bgArr[j];
         j++;
         if(j == 13)
-          j = 1;
+          j = 1;*/
+          setColorBybgArr(3,i);
       }
-      if(i <= 40 && i > 30){
-        newCell = document.getElementById(`cell${i}`);
+      if(i <= 40 && i > 30){  // 31 -> 40
+       /* newCell = document.getElementById(`cell${i}`);
         newCell.style.backgroundColor = bgArr[j];
         j++;
         if(j == 11)
-          j = 1;
+          j = 1;*/
+          setColorBybgArr(1,i);
       }
-      if(i <= 50 && i > 40){
-        newCell = document.getElementById(`cell${i}`);
+      if(i <= 50 && i > 40){   // 41 -> 50
+        /*newCell = document.getElementById(`cell${i}`);
         newCell.style.backgroundColor = bgArr[j];
         j++;
         if(j == 11)
-          j = 3;
+          j = 3;*/
+          setColorBybgArr(1,i);
       }
-      if(i <= 60 && i > 50){
-        newCell = document.getElementById(`cell${i}`);
+      if(i <= 60 && i > 50){  //51 -> 60
+      /*  newCell = document.getElementById(`cell${i}`);
         newCell.style.backgroundColor = bgArr[j];
         j++;
         if(j == 13)
-          j = 3;
+          j = 3;*/
+          setColorBybgArr(3,i);
       }
-      if(i <= 70 && i > 60){
-        newCell = document.getElementById(`cell${i}`);
+      if(i <= 70 && i > 60){  // 61 -> 70
+       /* newCell = document.getElementById(`cell${i}`);
         newCell.style.backgroundColor = bgArr[j];
         j++;
         if(j == 13)
-          j = 3;
+          j = 1;*/
+          setColorBybgArr(3,i);
       }
-     
-      i++
-      if(i <= 50)
-        setTimeout(bgLoop1_50, 20);
+      if(i <= 80 && i > 70){  //71 -> 80
+       /* newCell = document.getElementById(`cell${i}`);
+        newCell.style.backgroundColor = bgArr[j];
+        j++;
+        if(j == 11)
+          j = 1;*/
+          setColorBybgArr(1,i);
+      }
+      if(i <= 90 && i > 80){  //81 -> 90
+        /*newCell = document.getElementById(`cell${i}`);
+        newCell.style.backgroundColor = bgArr[j];
+        j++;
+        if(j == 11)
+          j = 3;*/
+          setColorBybgArr(1,i);
+      }
+      if(i <= 100 && i > 90){  //91 -> 100
+        /*newCell = document.getElementById(`cell${i}`);
+        newCell.style.backgroundColor = bgArr[j];
+        j++;*/
+        setColorBybgArr(3,i);
+      }
     }
     
-    bgLoop1_50()
     
   }
+  let setColorBybgArrCount = 1, bgStart;
+  const setColorBybgArr = (Start,i) => {
+   if(setColorBybgArrCount == 1)
+    bgStart = Start; //only 1st time bgStart update then it will increment | mean it will not updated eachtime of fun call.
+   newCell =document.getElementById(`cell${i}`);
+   newCell.style.backgroundColor = bgArr[bgStart];
+   bgStart++;
+   setColorBybgArrCount++;
+   if(setColorBybgArrCount == 11)
+     setColorBybgArrCount = 1;  // after 10 time call function count will restart 
+   }
   
-  
-  const bgloopTwo = () => {
-    let i= 100, j = 2;
-    const bgLoop100_51 = () => {
-      if(i >= 91){
-        newCell = document.getElementById(`cell${i}`);
-        newCell.style.backgroundColor = bgArr[j];
-        j++;
-        if(j == 12)
-          j = 4;
-      }
-      if(i >= 81 && i < 91){
-        newCell = document.getElementById(`cell${i}`);
-        newCell.style.backgroundColor = bgArr[j];
-        j++;
-        if(j == 14)
-          j = 4;
-      }
-      if(i >= 71 && i < 81){
-        newCell = document.getElementById(`cell${i}`);
-        newCell.style.backgroundColor = bgArr[j];
-        j++;
-        if(j == 14)
-          j = 2;
-      }
-      if(i >= 61 && i < 71){
-        newCell = document.getElementById(`cell${i}`);
-        newCell.style.backgroundColor = bgArr[j];
-        j++;
-        if(j == 12)
-          j = 2;
-      }
-      if(i >= 51 && i < 61){
-        newCell = document.getElementById(`cell${i}`);
-        newCell.style.backgroundColor = bgArr[j];
-        j++;
-        if(j == 12)
-          j = 2;
-      }
-      i--
-      if(i >= 51)
-        setTimeout(bgLoop100_51, 20);
-    }
-    bgLoop100_51()
-  }
-  bgloopOne()
-  bgloopTwo()  
+  bgColorSequence();
+    
+    
+    
+    
+    
     
     
   </script>
