@@ -91,6 +91,23 @@
       transition: all .5s ease;
     }
 
+    .pieceSize {
+      width: 6%;
+      height: 6%;
+      border-radius: 50%;
+      position: absolute;
+      border: .5px solid black;
+      transition: all .5s ease;
+      bottom: 2%;
+      left: 2%;
+    }
+
+    /* #bluePieceId {
+      bottom: 2%;
+      left: 2%;
+      background: #0000ffb3;
+    } */
+
     #cubeContainer {
       width: 50px;
       height: 50px;
@@ -245,24 +262,7 @@
       let randomValue = 0, randomFunCount = 0;
       let blueIncrementActive = 0, botIncrementActive = 0;
 
-      /*  while( botPiece > 100 && bluePiece >100 ){
-          if(botActive == 1){
-            
-            console.log('bot : ',botPiece);
-            botActive = 0;
-            blueActive = 1;
-            round++;
-          }
-          else if(blueActive == 1){
-            console.log('blue : ',bluePiece);
-            blueActive = 0;
-            botActive = 1;
-            round++;
-          }
-        }*/
-
-
-
+   
       //             👇   cube play   👇
       const cubePlay = () => {
         cube.addEventListener('click', async (event) => {
@@ -279,31 +279,15 @@
       }
       cubePlay();
       const botActiveFun = async () => {
-        console.log('cube play for bot');
-        await cubeAnimation();
-        await botIncrement();
-        randomFunCount = 0;
-        randomValue = 0;
+        // console.log('cube play for bot');
+        // await cubeAnimation();
+        // await botIncrement();
+        // randomFunCount = 0;
+        // randomValue = 0;
         blueActive = 1;
       }
 
-
-      /*  const cubePlay = () => {
-          cube.addEventListener('click', (event) => {
-            if(event.target.id == 'cube' && botActive == 1){
-               console.log('cube play for bot');
-               blueActive = 1;
-               botActive = 0;
-            }
-            else if(event.target.id == 'cube' && blueActive == 1){
-               console.log('cube play for blue');
-               botActive = 1;
-               blueActive = 0;
-            }
-          });
-        }
-        cubePlay();*/
-
+ 
       //        👇   cube animation   👇
 
       const cubeAnimation = () => {
@@ -338,40 +322,84 @@
       }
 
 
-      const blueIncrement = () => {
-        if(randomValue == 1){
+      const blueIncrement = async () => {
+        if (randomValue == 1) {
           blueIncrementActive++;  //if random value for blue 1 then ++ >>> that is 1
-          console.log("increment.....");
         }
-        if(blueIncrementActive > 0){ // if 1 > 0 then blue piecs + random value.
+        if (blueIncrementActive > 0) { // if 1 > 0 then blue piecs + random value.
+
+          if (bluePiece == 0) { // if blueIncrementActive > 0 && bluePiece == 0. if bluePiece is 1 0r more then it will not create any other div
+            const piece = document.createElement('div');
+            piece.classList.add('pieceSize');
+            piece.id = 'bluePieceId';
+            gameContainer.appendChild(piece);
+            bluePieceId.style.background = "#0000ffb3"
+          }
+      
+
+          let temp = bluePiece; /// save piece position before increment.
           bluePiece = bluePiece + randomValue;
-          console.log("increment.....",bluePiece);
+          await pieceMove(temp, randomValue);
+
+          console.log("increment.....", bluePiece);
         }
 
-        // return new Promise((resolve) =>{
-        //   resolve();
-        // })
-      }
       
+      }
+
       const botIncrement = () => {
-        if(randomValue == 1){
+        if (randomValue == 1) {
           botIncrementActive++;  //if random value for bot 1 then ++ >>> that is 1
           console.log("increment.....");
         }
-        if(botIncrementActive > 0){ // if 1 > 0 then bot piecs + random value.
+        if (botIncrementActive > 0) { // if 1 > 0 then bot piecs + random value.
           botPiece = botPiece + randomValue;
-          console.log("increment.....",botPiece);
-        }
-
-        // return new Promise((resolve) =>{
-        //   resolve();
-        // })
+          console.log("increment.....", botPiece);
+        }       
       }
 
+      // let bluePieceBottom = 2, bluePieceLeft = 2;
+      const parentRect = gameContainer.getBoundingClientRect();
+
+      const pieceMove = (bluePiece, randomValue) => {
+        let i = 0;
+
+        const loop = () => {
+          console.log("okk okk", bluePiece);
+
+          if (bluePiece > 0) {
+            bluePiece++;
+
+            let cell = document.getElementById(`cell${bluePiece}`);
+            let cellRect = cell.getBoundingClientRect();  // to find position of the cell
+            let leftPosition = ((cellRect.left - parentRect.left) / parentRect.width) * 100;
+            let topPosition = ((cellRect.top - parentRect.top) / parentRect.width) * 100;
+
+            let temp1 = parseFloat(leftPosition.toFixed(2));
+            temp1 = temp1 + 1.86;
+            console.log(`left Position : `, temp1);
+            bluePieceId.style.left = `${temp1}%`;
+            let temp2 = parseFloat(topPosition.toFixed(2));
+            temp2 = temp2 + 2.19;
+            console.log(`top Position : `, temp2);
+            bluePieceId.style.top = `${temp2}%`;
+
+            i++;   
+
+            if (i < randomValue)
+              setTimeout(loop, 500);
+          }
+        }
+        loop();
 
 
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            console.log("resolve : ", i)
+            resolve();
+          }, 500*randomValue);
+        });
 
-      const pieceMove = () => {
 
       }
     }
