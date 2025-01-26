@@ -1,6 +1,8 @@
 <html>
 
 <head>
+  <link rel="stylesheet" href="cellPadding.css">
+  <link rel="stylesheet" href="ladder & sanke position.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tic Tac Game</title>
@@ -34,7 +36,7 @@
       grid-template-columns: repeat(1, 1fr);
       grid-template-rows: repeat(10, 1fr);
       border: .8px solid #662b32;
-      font-size: 12px;
+      font-size: 13px;
       position: relative;
     }
 
@@ -53,19 +55,7 @@
       z-index: -3;
     }
 
-    #firstLadder {
-      height: 52%;
-      width: 12%;
-      background: url('Ladder01.jpg');
-      background-repeat: no-repeat;
-      background-size: cover;
-      transform: rotate(32deg);
-      filter: opacity(60%);
-      position: absolute;
-      bottom: 4%;
-      left: 12%;
-      border: 0px solid black;
-    }
+
 
     .allRow {
       display: grid;
@@ -73,13 +63,6 @@
       grid-template-rows: repeat(1, 1fr);
     }
 
-    .allCell {
-      border: .8px solid #662b32;
-    }
-
-    #cell1 {
-      color: white;
-    }
 
     .piece {
       width: 6%;
@@ -126,6 +109,7 @@
       height: 100%;
     }
 
+
     @media screen and (min-width: 1200px) {
       #gameContainer {
         height: 450px;
@@ -133,7 +117,6 @@
         border: .8px solid #662b32;
         font-size: 16px;
       }
-
 
 
 
@@ -147,7 +130,19 @@
   <div id="gameBody">
     <div id="gameContainer">
       <div id="gameContainerBg"></div>
-      <div id="firstLadder"></div>
+      <div id="Ladder_2-23"></div>
+      <div id="Ladder_4-45"></div>
+      <div id="Ladder_39-81"></div>
+      <div id="Ladder_53-73"></div>
+      <div id="Ladder_57-96"></div>
+      <div id="Ladder_71-92"></div>
+      <div id="Snake_43-17"></div>
+      <div id="Snake_50-5"></div>
+      <div id="Snake_56-8"></div>
+      <div id="Snake_84-63"></div>
+      <div id="Snake_87-49"></div>
+      <div id="Snake_95-14"></div>
+      <div id="Snake_98-40"></div>
     </div>
     <div id="cubeContainer">
       <div id="cube">
@@ -181,7 +176,7 @@
       }
     }
 
-    // working process 👇
+
 
 
 
@@ -240,29 +235,12 @@
     bgColorSequence();
 
 
-    const piece = document.createElement('div');
-    piece.classList.add('piece');
-    piece.id = 'pieceId';
-    //piece.textContent = 'hi';
-    gameContainer.appendChild(piece);
-    let t = 2, i = 1;
-    const loop = () => {
-      piece.style.left = `${t}%`;
-      piece.style.top = `${t}%`;
-      t = t + 10;
-      i++;
-      if (i <= 10)
-        setTimeout(loop, 500);
-    }
-    loop();
-
-
     const oneVsOne = () => {
       let botPiece = 0, bluePiece = 0, round = 1, botActive = 0, blueActive = 1;
       let randomValue = 0, randomFunCount = 0;
       let blueIncrementActive = 0, botIncrementActive = 0;
 
-   
+
       //             👇   cube play   👇
       const cubePlay = () => {
         cube.addEventListener('click', async (event) => {
@@ -273,21 +251,22 @@
             await blueIncrement();
             randomFunCount = 0;
             randomValue = 0;  // after paly cube random value is 0;           
-            botActiveFun();
+            // botActiveFun();
+            blueActive = 1;
           }
         });
       }
       cubePlay();
       const botActiveFun = async () => {
-        // console.log('cube play for bot');
-        // await cubeAnimation();
-        // await botIncrement();
-        // randomFunCount = 0;
-        // randomValue = 0;
+        console.log('cube play for bot');
+        await cubeAnimation();
+        await botIncrement();
+        randomFunCount = 0;
+        randomValue = 0;
         blueActive = 1;
       }
 
- 
+
       //        👇   cube animation   👇
 
       const cubeAnimation = () => {
@@ -335,59 +314,154 @@
             gameContainer.appendChild(piece);
             bluePieceId.style.background = "#0000ffb3"
           }
-      
+
 
           let temp = bluePiece; /// save piece position before increment.
           bluePiece = bluePiece + randomValue;
-          await pieceMove(temp, randomValue);
+          bluePiece = await snakeOrLadderCheck(temp, bluePiece, randomValue, bluePieceId);
+
+
+          // if (bluePiece == 2) {   // piece + random == 2 then
+          //   await pieceNormalMove(temp, randomValue, bluePieceId); // oldpiece position to random position normal move.
+          //   await pieceSpacialMove(23, bluePieceId); // form 2 to 23 move, blue piece id send.
+          //   bluePiece = bluePiece + 21;   // for ladder increment 
+          // }
+
+          // other checking condition are available on sanake and ladder check fun..
 
           console.log("increment.....", bluePiece);
         }
 
-      
       }
 
-      const botIncrement = () => {
+      const snakeOrLadderCheck = async (temp, pieceValue, randomValue, Id) => {
+
+        if (pieceValue == 992) {   // piece + random == 2 then
+          await pieceNormalMove(temp, randomValue, Id); // oldpiece(temp) position to random position normal move.
+          await pieceSpacialMove(23, Id); // form 2 to 23 move, blue piece id send.
+          pieceValue = pieceValue + 21;   // for ladder increment 
+        } 
+        else if (pieceValue == 6) {   // ladder 6->>45
+          await pieceNormalMove(temp, randomValue, Id);
+          await pieceSpacialMove(45, Id);
+          pieceValue = pieceValue + 39;
+        } 
+        else if (pieceValue == 39) {  // ladder 39->>81
+          await pieceNormalMove(temp, randomValue, Id);
+          await pieceSpacialMove(81, Id);
+          pieceValue = pieceValue + 42;
+        } 
+        else if (pieceValue == 43) {
+          await pieceNormalMove(temp, randomValue, Id);
+          await pieceSpacialMove(17, Id);
+          pieceValue = pieceValue - 26;
+        }
+        else if (pieceValue == 50) {
+          await pieceNormalMove(temp, randomValue, Id);
+          await pieceSpacialMove(5, Id);
+          pieceValue = pieceValue - 45;
+        }
+        else if (pieceValue == 53) {
+          await pieceNormalMove(temp, randomValue, Id);
+          await pieceSpacialMove(73, Id);
+          pieceValue = pieceValue + 20;
+        }
+        else if (pieceValue == 56) {
+          await pieceNormalMove(temp, randomValue, Id);
+          await pieceSpacialMove(8, Id);
+          pieceValue = pieceValue - 48;
+        }
+        else if (pieceValue == 57) {
+          await pieceNormalMove(temp, randomValue, Id);
+          await pieceSpacialMove(96, Id);
+          pieceValue = pieceValue + 39;
+        }
+        else if (pieceValue == 71) {    // ladder 71->>92
+          await pieceNormalMove(temp, randomValue, Id);
+          await pieceSpacialMove(92, Id);
+          pieceValue = pieceValue + 21;
+        }
+        else if (pieceValue == 84) {    // ladder 84->> 63
+          await pieceNormalMove(temp, randomValue, Id);
+          await pieceSpacialMove(63, Id);
+          pieceValue = pieceValue - 21;
+        }
+        else if (pieceValue == 87) {    // ladder 87->> 49
+          await pieceNormalMove(temp, randomValue, Id);
+          await pieceSpacialMove(49, Id);
+          pieceValue = pieceValue - 38;
+        }
+        else if (pieceValue == 95) {    // ladder 95->> 27
+          await pieceNormalMove(temp, randomValue, Id);
+          await pieceSpacialMove(27, Id);
+          pieceValue = pieceValue - 68;
+        }
+        else if (pieceValue == 98) {    // ladder 95->> 27
+          await pieceNormalMove(temp, randomValue, Id);
+          await pieceSpacialMove(40, Id);
+          pieceValue = pieceValue - 58;
+        }
+        
+        else {
+          await pieceNormalMove(temp, randomValue, Id);    // oldpiece position to random position normal move.
+        }
+        return pieceValue;
+      }
+
+
+      const botIncrement = async () => {
         if (randomValue == 1) {
           botIncrementActive++;  //if random value for bot 1 then ++ >>> that is 1
-          console.log("increment.....");
         }
         if (botIncrementActive > 0) { // if 1 > 0 then bot piecs + random value.
+
+          if (botPiece == 0) { // if blueIncrementActive > 0 && bluePiece == 0. if bluePiece is 1 0r more then it will not create any other div
+            const piece = document.createElement('div');
+            piece.classList.add('pieceSize');
+            piece.id = 'botPieceId';
+            gameContainer.appendChild(piece);
+            botPieceId.style.background = "#14b714c7";
+          }
+
+
+          let temp = botPiece; /// save piece position before increment.
           botPiece = botPiece + randomValue;
-          console.log("increment.....", botPiece);
-        }       
+          botPiece = await snakeOrLadderCheck(temp, botPiece, randomValue, botPieceId);
+          // sanake and ladder checking condition are available on sanake and ladder check fun..
+
+          console.log("increment..bot...", botPiece);
+        }
       }
 
-      // let bluePieceBottom = 2, bluePieceLeft = 2;
+
       const parentRect = gameContainer.getBoundingClientRect();
 
-      const pieceMove = (bluePiece, randomValue) => {
+      const pieceNormalMove = (Piece, randomValue, Id) => {
         let i = 0;
 
         const loop = () => {
-          console.log("okk okk", bluePiece);
 
-          if (bluePiece > 0) {
-            bluePiece++;
+          if (Piece > 0) {
+            Piece++;
 
-            let cell = document.getElementById(`cell${bluePiece}`);
+            let cell = document.getElementById(`cell${Piece}`);
             let cellRect = cell.getBoundingClientRect();  // to find position of the cell
             let leftPosition = ((cellRect.left - parentRect.left) / parentRect.width) * 100;
             let topPosition = ((cellRect.top - parentRect.top) / parentRect.width) * 100;
 
             let temp1 = parseFloat(leftPosition.toFixed(2));
             temp1 = temp1 + 1.86;
-            console.log(`left Position : `, temp1);
-            bluePieceId.style.left = `${temp1}%`;
+            // console.log(`left Position : `, temp1);
+            Id.style.left = `${temp1}%`;
             let temp2 = parseFloat(topPosition.toFixed(2));
             temp2 = temp2 + 2.19;
-            console.log(`top Position : `, temp2);
-            bluePieceId.style.top = `${temp2}%`;
+            // console.log(`top Position : `, temp2);
+            Id.style.top = `${temp2}%`;
 
-            i++;   
+            i++;
 
             if (i < randomValue)
-              setTimeout(loop, 500);
+              setTimeout(loop, 300);
           }
         }
         loop();
@@ -397,11 +471,37 @@
           setTimeout(() => {
             console.log("resolve : ", i)
             resolve();
-          }, 500*randomValue);
+          }, 300 * randomValue);
         });
 
 
       }
+
+      const pieceSpacialMove = (whereMove, Id) => {
+
+        let cell = document.getElementById(`cell${whereMove}`);
+        let cellRect = cell.getBoundingClientRect();  // to find position of the cell
+        let leftPosition = ((cellRect.left - parentRect.left) / parentRect.width) * 100;
+        let topPosition = ((cellRect.top - parentRect.top) / parentRect.width) * 100;
+
+        Id.style.transition = `all 2s ease`;
+
+        let temp1 = parseFloat(leftPosition.toFixed(2));
+        temp1 = temp1 + 1.86;
+        Id.style.left = `${temp1}%`;
+        let temp2 = parseFloat(topPosition.toFixed(2));
+        temp2 = temp2 + 2.19;
+        Id.style.top = `${temp2}%`;
+
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            Id.style.transition = `all .5s ease`;
+            resolve();
+          }, 2500);
+        });
+      }
+
+
     }
     oneVsOne();
 

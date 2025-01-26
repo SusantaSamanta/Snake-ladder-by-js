@@ -1,0 +1,174 @@
+#Ladder_2-23 {
+  height: 24%;
+  width: 12%;
+  background-image: url("ladder images/Ladder_2-23.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform: rotate(18deg);
+  filter: opacity(50%);
+  position: absolute;
+  bottom: 3%;
+  left: 11%;
+  border: 0px solid black;
+}
+
+#Ladder_4-45 {
+  height: 44%;
+  width: 12%;
+  background-image: url("ladder images/Ladder_4-45.png");
+  background-repeat: no-repeat;
+  background-size: 140%;
+  transform: rotate(-10deg);
+  filter: opacity(50%);
+  position: absolute;
+  bottom: 3%;
+  left: 42%;
+  border: 0px solid black;
+}
+#Ladder_39-81 {
+  height: 55%;
+  width: 20%;
+  background-image: url("ladder images/Ladder_39-81.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  transform: rotate(2deg);
+  filter: opacity(50%);
+  position: absolute;
+  top: 12%;
+  left: -1%;
+  border: 0px solid black;
+}
+#Ladder_53-73 {
+  height: 24%;
+  width: 12%;
+  background-image: url("ladder images/Ladder_2-23.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform: rotate(0deg);
+  filter: opacity(50%);
+  position: absolute;
+  top: 23%;
+  left: 69%;
+  border: 0px solid black;
+}
+#Ladder_57-96 {
+  height: 44%;
+  width: 12%;
+  background-image: url("ladder images/Ladder_4-45.png");
+  background-repeat: no-repeat;
+  background-size: 140%;
+  transform: rotate(10deg);
+  filter: opacity(50%);
+  position: absolute;
+  top: 2%;
+  left: 30%;
+  border: 0px solid black;
+}
+#Ladder_71-92 {
+  height: 24%;
+  width: 12%;
+  background-image: url("ladder images/Ladder_2-23.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform: rotate(-20deg);
+  filter: opacity(50%);
+  position: absolute;
+  top: 5%;
+  left: 82%;
+  border: 0px solid black;
+}
+#Snake_43-17 {
+  height: 58%;
+  width: 32%;
+  background-image: url("snake images/Snake_43-17.png");
+  background-repeat: no-repeat;
+  background-size: 110%;
+  transform: rotate(0deg);
+  filter: opacity(90%);
+  position: absolute;
+  top: 46%;
+  left: 18%;
+  border: 0px solid black;
+}
+
+#Snake_50-5 {
+  height: 58%;
+  width: 32%;
+  background-image: url("snake images/Snake_50-5.png");
+  background-repeat: no-repeat;
+  background-size: 92%;
+  transform: rotate(24deg);
+  filter: opacity(90%);
+  position: absolute;
+  top: 46%;
+  left: 56%;
+  border: 0px solid black;
+}
+
+#Snake_56-8 {
+  height: 54%;
+  width: 36%;
+  background: url('snake images/Snake_56-8.png');
+  background-repeat: no-repeat;
+  transform: rotate(3deg);
+  background-size: 103%;
+  filter: opacity(90%);
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  border: 0px solid black;
+}
+
+#Snake_84-63 {
+  height: 25%;
+  width: 28%;
+  background: url('snake images/Snake_84-63.png');
+  background-repeat: no-repeat;
+  background-size: 110%;
+  filter: opacity(80%);
+  position: absolute;
+  top: 10%;
+  left: 24%;
+  border: 0px solid black;
+}
+
+#Snake_87-49 {
+  height: 50%;
+  width: 32%;
+  background: url('snake images/Snake_87-49.png');
+  background-repeat: no-repeat;
+  transform: rotate(-1deg);
+  background-size: 105%;
+  filter: opacity(80%);
+  position: absolute;
+  top: 9.5%;
+  left: 61%;
+  border: 0px solid black;
+}
+
+#Snake_95-14 {
+  height: 90%;
+  width: 28%;
+  background-image: url("snake images/Snake_95-14.png");
+  background-repeat: no-repeat;
+  background-size: 72%;
+  transform: rotate(-16deg);
+  filter: opacity(90%);
+  position: absolute;
+  top: -1%;
+  left: 50%;
+  border: 0px solid black;
+}
+#Snake_98-40 {
+  height: 58%;
+  width: 32%;
+  background-image: url("snake images/Snake_98-40.png");
+  background-repeat: no-repeat;
+  background-size: 92%;
+  transform: rotate(-6deg);
+  filter: opacity(90%);
+  position: absolute;
+  top: 6%;
+  left: 1%;
+  border: 0px solid black;
+}
