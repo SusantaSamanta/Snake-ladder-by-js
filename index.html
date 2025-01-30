@@ -16,7 +16,7 @@
     }
 
     /* body {
-      background: ;
+      background: white ;
     } */
 
     #gameBody {
@@ -223,7 +223,7 @@
     let setColorBybgArrCount = 1, bgStart;
     const setColorBybgArr = (Start, i) => {
       if (setColorBybgArrCount == 1)
-        bgStart = Start;   //only 1st time bgStart update then it will increment | mean it will not updated eachtime of fun call.
+        bgStart = Start;   //only 1st time bgStart update then it will increment | mean it will not updated each time of fun call.
       newCell = document.getElementById(`cell${i}`);
       newCell.style.backgroundColor = bgArr[bgStart];
       bgStart++;
@@ -305,7 +305,7 @@
         if (randomValue == 1) {
           blueIncrementActive++;  //if random value for blue 1 then ++ >>> that is 1
         }
-        if (blueIncrementActive > 0) { // if 1 > 0 then blue piecs + random value.
+        if (blueIncrementActive > 0) { // if 1 > 0 then blue pieces + random value.
 
           if (bluePiece == 0) { // if blueIncrementActive > 0 && bluePiece == 0. if bluePiece is 1 0r more then it will not create any other div
             const piece = document.createElement('div');
@@ -322,12 +322,12 @@
 
 
           // if (bluePiece == 2) {   // piece + random == 2 then
-          //   await pieceNormalMove(temp, randomValue, bluePieceId); // oldpiece position to random position normal move.
+          //   await pieceNormalMove(temp, randomValue, bluePieceId); // old piece position to random position normal move.
           //   await pieceSpacialMove(23, bluePieceId); // form 2 to 23 move, blue piece id send.
           //   bluePiece = bluePiece + 21;   // for ladder increment 
           // }
 
-          // other checking condition are available on sanake and ladder check fun..
+          // other checking condition are available on snake and ladder check fun..
 
           console.log("increment.....", bluePiece);
         }
@@ -413,7 +413,7 @@
         if (randomValue == 1) {
           botIncrementActive++;  //if random value for bot 1 then ++ >>> that is 1
         }
-        if (botIncrementActive > 0) { // if 1 > 0 then bot piecs + random value.
+        if (botIncrementActive > 0) { // if 1 > 0 then bot pieces + random value.
 
           if (botPiece == 0) { // if blueIncrementActive > 0 && bluePiece == 0. if bluePiece is 1 0r more then it will not create any other div
             const piece = document.createElement('div');
@@ -427,7 +427,7 @@
           let temp = botPiece; /// save piece position before increment.
           botPiece = botPiece + randomValue;
           botPiece = await snakeOrLadderCheck(temp, botPiece, randomValue, botPieceId);
-          // sanake and ladder checking condition are available on sanake and ladder check fun..
+          // snake and ladder checking condition are available on snake and ladder check fun..
 
           console.log("increment..bot...", botPiece);
         }
